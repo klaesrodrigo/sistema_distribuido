@@ -22,9 +22,11 @@ const coinMapping = async (coin) => {
 
 const getCoins = async () => {
   try {
-    console.log(baseURL)
-    const coins = await axios.get(`${baseURL}/all/USD-BRL,USDT-BRL,EUR-BRL,BTC-BRL,GBP-BRL,CNY-BRL,ARS-BRL,`)
-    return coins.data.map(coin => coinMapping(coin))
+    const coinsData = await axios.get(`${baseURL}/all/USD-BRL,USDT-BRL,EUR-BRL,BTC-BRL,GBP-BRL,CNY-BRL,ARS-BRL,`)
+    const coins = coinsData.data
+    const promise = Object.keys(coins).map(key => coinMapping(coins[key]))
+    const data = await Promise.all(promise)
+    return data
   } catch (error) {
     console.log('Erro ao consultar moedas', error)
   }

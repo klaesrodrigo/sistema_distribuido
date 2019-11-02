@@ -3,9 +3,11 @@ const Schema = mongoose.Schema
 
 const UserSchema = new Schema({
   name: String,
-  email: String,
-  phone: String,
-  warnings: Object
+  code: String,
+  value: {
+    buy: Number,
+    sale: Number
+  }
 })
 
 module.exports = mongoose.model('User', UserSchema)

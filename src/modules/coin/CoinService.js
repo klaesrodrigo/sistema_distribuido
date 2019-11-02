@@ -1,18 +1,14 @@
-const axios = require('axios')
-// const CoinModel = require('../model/CoinModel')
-// const util = require('../helpers/util')
-
-const baseURL = process.env.BC_BASE_URL
+const CoinModel = require('./CoinModel')
+const util = require('../../helpers/util')
 class CoinService {
   async getAndSaveCoins () {
     try {
-      const data = await this.getCoins()
+      const data = await util.getCoins()
 
-      for (const coin in data) {
+      for (const coin of data) {
         console.log(coin)
+        await new CoinModel().post(coin)
       }
-
-      // const result = await new CoinModel().post(data)
 
       return data
     } catch (error) {
