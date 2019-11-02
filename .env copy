@@ -1,0 +1,7 @@
+PORT=3001
+
+BC_BASE_URL='https://economia.awesomeapi.com.br'
+
+BOT_TOKEN="897884059:AAH8qU4_7lCUyVTx7nrGb4haZB7kry4OuZ0"
+
+DB_CONNECTION="mongodb://cambio_admin:cambio_admin_1@ds037688.mlab.com:37688/cambio"
