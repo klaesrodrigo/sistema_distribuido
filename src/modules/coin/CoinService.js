@@ -4,15 +4,29 @@ class CoinService {
   async getAndSaveCoins () {
     try {
       const data = await util.getCoins()
-
+      const coinModel = new CoinModel()
       for (const coin of data) {
-        console.log(coin)
-        await new CoinModel().post(coin)
+        const hasCoin = await coinModel.get(coin.code)
+        if (hasCoin) {
+          await coinModel.update(hasCoin._id, coin)
+        } else {
+          await coinModel.post(coin)
+        }
       }
 
       return data
     } catch (error) {
       console.log('Erro ao salvar moedas', error)
+    }
+  }
+
+  async list () {
+    try {
+      const data = await new CoinModel().list()
+
+      return data
+    } catch (error) {
+      console.log('Erro ao buscar moedas', error)
     }
   }
 }

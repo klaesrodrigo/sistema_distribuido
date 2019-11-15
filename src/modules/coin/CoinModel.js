@@ -1,20 +1,24 @@
 const Model = require('./schema/CoinSchema')
 
 class CoinModel {
-  constructor () {
-    this.Model = Model
-  }
-
   async post (data) {
     const coin = await new Model(data).save()
     return coin
   }
 
   async get (code) {
-    console.log('code', { code })
+    const coin = await Model.findOne({ code })
+    return coin
+  }
 
-    // const coin = await new Model().findOne({ code })
-    return true
+  async list (code) {
+    const coins = await Model.find()
+    return coins
+  }
+
+  async update (id, data) {
+    const coin = await Model.where({ _id: id }).update(data)
+    return coin
   }
 }
 

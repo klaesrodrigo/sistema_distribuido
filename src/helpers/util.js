@@ -2,6 +2,8 @@ const axios = require('axios')
 
 const baseURL = process.env.BC_BASE_URL
 
+// const keys = ['USD', 'USDT', 'EUR', 'BTC', 'GBP', 'CNY', 'ARS']
+
 const coinMapping = async (coin) => {
   const {
     name,
@@ -14,16 +16,18 @@ const coinMapping = async (coin) => {
     name,
     code,
     value: {
-      buy,
-      sale
+      buy: buy.replace('.', '').replace(',', '.'),
+      sale: sale.replace('.', '').replace(',', '.')
     }
   }
 }
 
 const getCoins = async () => {
   try {
-    const coinsData = await axios.get(`${baseURL}/all/USD-BRL,USDT-BRL,EUR-BRL,BTC-BRL,GBP-BRL,CNY-BRL,ARS-BRL,`)
+    const coinsData = await axios.get(`${baseURL}/all`)
     const coins = coinsData.data
+    console.log(coins)
+
     const promise = Object.keys(coins).map(key => coinMapping(coins[key]))
     const data = await Promise.all(promise)
     return data

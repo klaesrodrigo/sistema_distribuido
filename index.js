@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const express = require('express')
 const CoinService = require('./src/modules/coin/CoinService')
 const UserRoutes = require('./src/modules/user/UserRoutes')
-const utils = require('./src/helpers/util')
+// const utils = require('./src/helpers/util')
 
 const app = express()
 
@@ -19,6 +19,16 @@ app.get('/coins', async (req, res) => {
   const coinService = new CoinService()
   try {
     const coins = await coinService.getAndSaveCoins()
+    res.send(coins)
+  } catch (error) {
+    res.send(error)
+  }
+})
+
+app.get('/coins/all', async (req, res) => {
+  const coinService = new CoinService()
+  try {
+    const coins = await coinService.list()
     res.send(coins)
   } catch (error) {
     res.send(error)
