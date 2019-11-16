@@ -2,11 +2,13 @@ require('dotenv').config()
 
 const mongoose = require('mongoose')
 const express = require('express')
-const CoinService = require('./src/modules/coin/CoinService')
+const bodyParser = require('body-parser')
 const UserRoutes = require('./src/modules/user/UserRoutes')
+const CoinRoutes = require('./src/modules/coin/CoinRoutes')
 // const utils = require('./src/helpers/util')
 
 const app = express()
+app.use(bodyParser.json())
 
 const port = process.env.PORT
 const connection = process.env.DB_CONNECTION
@@ -15,27 +17,8 @@ console.log(connection)
 
 mongoose.connect(connection, { useNewUrlParser: true, useUnifiedTopology: true })
 
-app.get('/coins', async (req, res) => {
-  const coinService = new CoinService()
-  try {
-    const coins = await coinService.getAndSaveCoins()
-    res.send(coins)
-  } catch (error) {
-    res.send(error)
-  }
-})
-
-app.get('/coins/all', async (req, res) => {
-  const coinService = new CoinService()
-  try {
-    const coins = await coinService.list()
-    res.send(coins)
-  } catch (error) {
-    res.send(error)
-  }
-})
-
 app.use('/users', UserRoutes)
+app.use('/coins', CoinRoutes)
 
 app.listen(port, () => {
   console.log(`Open: ${port}`)

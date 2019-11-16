@@ -10,6 +10,11 @@ class UserModel {
     const users = await Model.find()
     return users
   }
+
+  async get (where) {
+    const user = await Model.findOne({ ...where })
+    return user
+  }
 }
 
 module.exports = UserModel

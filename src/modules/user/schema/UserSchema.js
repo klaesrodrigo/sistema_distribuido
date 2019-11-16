@@ -3,8 +3,12 @@ const Schema = mongoose.Schema
 
 const userSchema = new Schema({
   name: String,
-  email: String,
-  phone: Number
+  chat_id: Number,
+  is_active: { type: Boolean, default: true },
+  date: {
+    type: Date,
+    default: Date.now
+  }
 })
 
-// module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model('User', userSchema)
