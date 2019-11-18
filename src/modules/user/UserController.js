@@ -13,9 +13,11 @@ class UserController {
 
   async create (req, res) {
     try {
-      // console.log(res)
+      console.log('user')
 
       const user = await new Service().create(req.body)
+      console.log(user)
+
       res.status(201).send(user)
     } catch (error) {
       console.error(error)

@@ -1,20 +1,20 @@
 const CoinService = require('./CoinService')
 
 class CoinController {
-  async getAndSaveCoins (req, res) {
+  async list (req, res) {
     const coinService = new CoinService()
     try {
-      const coins = await coinService.getAndSaveCoins()
+      const coins = await coinService.list()
       res.send(coins)
     } catch (error) {
       res.send(error)
     }
   }
 
-  async list (req, res) {
+  async create (req, res) {
     const coinService = new CoinService()
     try {
-      const coins = await coinService.list()
+      const coins = await coinService.create(req.body)
       res.send(coins)
     } catch (error) {
       res.send(error)

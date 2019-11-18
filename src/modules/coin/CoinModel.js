@@ -6,8 +6,8 @@ class CoinModel {
     return coin
   }
 
-  async get (code) {
-    const coin = await Model.findOne({ code })
+  async get (name) {
+    const coin = await Model.findOne({ name })
     return coin
   }
 

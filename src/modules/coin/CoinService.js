@@ -1,12 +1,11 @@
 const CoinModel = require('./CoinModel')
-const util = require('../../helpers/util')
 class CoinService {
-  async getAndSaveCoins () {
+  async create (data) {
     try {
-      const data = await util.getCoins()
       const coinModel = new CoinModel()
       for (const coin of data) {
-        const hasCoin = await coinModel.get(coin.code)
+        const hasCoin = await coinModel.get(coin.name)
+
         if (hasCoin) {
           await coinModel.update(hasCoin._id, coin)
         } else {
