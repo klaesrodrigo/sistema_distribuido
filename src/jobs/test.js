@@ -1,6 +1,5 @@
 import bot from '../../bot/pincelada_bot'
 import axios from 'axios'
-
 const codes = ['USD', 'EUR', 'GBP']
 
 const mappingCoins = (coins) => {
@@ -36,10 +35,9 @@ module.exports = {
 
     const users = userResp.data
     const coins = await mappingCoins(coinsData.data)
-    console.log(coins)
 
     users.forEach(async user => {
-      bot.sendMessage('644711950', await generateCoinRelatorio(user.name) + textCoins(coins))
+      bot.sendMessage(user.chat_id + '', await generateCoinRelatorio(user.name) + textCoins(coins))
     })
     console.log('Test finalizado...')
   }

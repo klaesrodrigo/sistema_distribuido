@@ -8,6 +8,7 @@
     "debug": "node --debug server.js",
     "dev": "npm-run-all -p dev:*",
     "dev:server": "nodemon index.js",
+    "dev:bot": "nodemon bot/pincelada_bot.js",
     "dev:queue": "nodemon src/queue.js",
     "start": "pm2 start ./index.js"
   },
@@ -15,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.0",
+    "bluebird": "^3.7.1",
     "body-parser": "^1.19.0",
     "bull": "^3.12.1",
     "bull-board": "^0.5.0",
