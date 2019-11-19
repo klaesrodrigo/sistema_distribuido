@@ -7,13 +7,14 @@ const UserRoutes = require('./src/modules/user/UserRoutes')
 const CoinRoutes = require('./src/modules/coin/CoinRoutes')
 const BullBoard = require('bull-board')
 const Queue = require('./src/libs/Queue')
+const cors = require('cors')
 
 const app = express()
 BullBoard.setQueues(Queue.queues.map(queue => queue.bull))
 
 app.use(bodyParser.json())
 app.use('/admin/queues', BullBoard.UI)
-
+app.use(cors())
 const port = process.env.PORT
 const connection = process.env.DB_CONNECTION
 

@@ -13,7 +13,7 @@ const mappingCoins = (coins) => {
 }
 
 const textCoins = (coins) => {
-  return coins.map(coin => `\n ${coin.name} \nCompra: ${coin.value.buy} - Venda ${coin.value.buy} \n`)
+  return coins.map(coin => `\n${coin.name} \nCompra: ${coin.value.buy} - Venda ${coin.value.buy}\n`)
 }
 
 const generateCoinRelatorio = (name) => {
