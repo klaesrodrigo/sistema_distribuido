@@ -10,7 +10,10 @@
     "dev:server": "nodemon index.js",
     "dev:bot": "nodemon bot/pincelada_bot.js",
     "dev:queue": "nodemon src/queue.js",
-    "start": "pm2 start ./index.js"
+    "start:server": "pm2 start ./index.js"
+    "start:bot": "nodemon bot/pincelada_bot.js",
+    "start:queue": "nodemon src/queue.js",
+    "start": "npm-run-all -p start:*"
   },
   "author": "",
   "license": "ISC",
