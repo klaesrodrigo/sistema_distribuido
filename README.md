@@ -1,4 +1,8 @@
 <h1>Sistema de relatórios de cambio monetário</h1>
+O sistema é distribuído, descentralizado e orientado a eventos, que utiliza diversos conceitos de um sistema distribuído como middleware, acoplamento, concorrência, filas, cache e protocolos de comunicação.
+
+<h2> Proposta </h2>
+<a href="https://drive.google.com/open?id=1ApGUFMWIeQny7b2q0yYstcyUjFg5wVZN"> link para download da proposta</a>
 
 <h2>Necessidades</h2>
 
@@ -45,5 +49,3 @@ Esse serviço é responsável por executar os Jobs que foram colocados na fila. 
 
 - <h4> API </h4>
 É responsável por fazer o gerenciamento de usuários e moedas. Ele serve tanto para mostrar as moedas, como para integrar os serviços do sistema distribuído, mantendo o sistema integro.
-
-- 
