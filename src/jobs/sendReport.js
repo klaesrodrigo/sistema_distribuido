@@ -1,4 +1,4 @@
-import bot from '../../bot/pincelada_bot'
+import bot from '../../bot/config'
 import axios from 'axios'
 const codes = ['USD', 'EUR', 'GBP']
 
@@ -21,7 +21,7 @@ const generateCoinRelatorio = (name) => {
 }
 
 module.exports = {
-  key: 'test',
+  key: 'sendReport',
   options: {
     repeat: {
       every: 5000,
@@ -29,7 +29,7 @@ module.exports = {
     }
   },
   handle: async () => {
-    console.log('Test iniciado...')
+    console.log('SendReport iniciado...')
     const coinsData = await axios.get('http://localhost:3001/coins')
     const userResp = await axios.get('http://localhost:3001/users')
 
@@ -39,6 +39,6 @@ module.exports = {
     users.forEach(async user => {
       bot.sendMessage(user.chat_id + '', await generateCoinRelatorio(user.name) + textCoins(coins))
     })
-    console.log('Test finalizado...')
+    console.log('SendReport finalizado...')
   }
 }

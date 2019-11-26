@@ -1,6 +1,6 @@
 const axios = require('axios')
 const baseURL = process.env.BC_BASE_URL
-const CoinService = require('../modules/coin/CoinService')
+// const CoinService = require('../modules/coin/CoinService')
 
 // const keys = ['USD', 'USDT', 'EUR', 'BTC', 'GBP', 'CNY', 'ARS']
 

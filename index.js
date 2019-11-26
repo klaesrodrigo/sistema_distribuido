@@ -8,11 +8,18 @@ const CoinRoutes = require('./src/modules/coin/CoinRoutes')
 const BullBoard = require('bull-board')
 const Queue = require('./src/libs/Queue')
 const cors = require('cors')
+const requestIp = require('request-ip')
 
 const app = express()
 BullBoard.setQueues(Queue.queues.map(queue => queue.bull))
-
+app.set('trust proxy', true)
 app.use(bodyParser.json())
+app.use((req, res, next) => {
+  const clientIp = requestIp.getClientIp(req)
+  console.log('Isso é um middleware')
+  console.log(req.url)
+  next()
+})
 app.use('/admin/queues', BullBoard.UI)
 app.use(cors())
 const port = process.env.PORT

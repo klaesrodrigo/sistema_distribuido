@@ -1,7 +1,7 @@
 const getCoinsAndSave = require('./getCoinsAndSave')
-const test = require('./test')
+const sendReport = require('./sendReport')
 
 module.exports = {
   getCoinsAndSave,
-  test
+  sendReport
 }
